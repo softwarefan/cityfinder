@@ -1,5 +1,4 @@
-
-header('Content-Type: text/html; charset=utf-8');
+<?php
 include_once("config.php");
 $desc = $_POST['description'];
 $name = $_POST['cityName'];

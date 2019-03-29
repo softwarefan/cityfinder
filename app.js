@@ -2,6 +2,7 @@ $(document).ready(function() {
     showPrompt();
     submitData();
     uploadInfoToDatabase();
+    loginToAdmin();
 });
 
 //submits form
@@ -108,4 +109,21 @@ function uploadInfoToDatabase() {
 
     });
 
+
+
+
+}
+
+function loginToAdmin() {
+    $("#login-btn").on('submit', function() {
+        $.ajax({
+            url: "upload-service.php",
+            type: "POST",
+            data: $("form").serialize()
+        }).done(function(res) {
+            console.log(res);
+        }).fail(function(error) {
+            console.log(error);
+        });
+    });
 }
