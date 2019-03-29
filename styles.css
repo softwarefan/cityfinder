@@ -1,0 +1,49 @@
+.city {
+    font: 2em bold;
+    line-height: 2em;
+}
+
+.opisanie {
+    color: blueviolet;
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.form-group {
+    position: relative;
+}
+
+#prompt {
+    display: none;
+    width: 100px;
+    z-index: 100;
+    background: white;
+    border: 1px solid black;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    color: blue;
+}
+
+ul {
+    display: block;
+    list-style: none;
+    padding-left: 0;
+}
+
+#heading {
+    text-align: center;
+    border: 1px solid lightblue;
+    font-size: 2em;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.data-upload {
+    float: right;
+}
+
+.exit {
+    float: right;
+}
