@@ -3,6 +3,7 @@ $(document).ready(function() {
     submitData();
     uploadInfoToDatabase();
     loginToAdmin();
+    exitDataUpload();
 });
 
 //submits form
@@ -125,5 +126,18 @@ function loginToAdmin() {
         }).fail(function(error) {
             console.log(error);
         });
+    });
+}
+
+
+//exits data upload and navigates to search page
+function exitDataUpload() {
+    $.GET({
+        url: "upload.php",
+        data: {exitUpload: true}
+    }).done(function(res) {
+        console.log(res);
+    }).fail(function(error) {
+        console.log(error);
     });
 }

@@ -1,9 +1,15 @@
 <?php
 session_start();
+if (isset_GET['exitUpload']){
+    session_destroy();
+    header('Location:index.php ');
+    return;
+}
+
 if (!isset($_SESSION['logged'])) {
     header('Location:admin.html');
 } else {
-    
+
 ?>
 
 
@@ -33,7 +39,7 @@ if (!isset($_SESSION['logged'])) {
                 <textarea class="form-control" rows="4" id="description" name="description"></textarea>
             </div>
             <button type="submit" class="btn btn-primary" id="upload">Качи данните</button>
-            <a href="index.php" class="btn btn-secondary exit" id="exit">Изход</a>
+            <a href="index.php" class="btn btn-secondary exit" id="exit-data-upload">Изход</a>
         </form>
 
 
