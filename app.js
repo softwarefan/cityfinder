@@ -117,9 +117,8 @@ function uploadInfoToDatabase() {
 
 function loginToAdmin() {
     $("#login-btn").on('submit', function() {
-        $.ajax({
+        $.get({
             url: "upload-service.php",
-            type: "POST",
             data: $("form").serialize()
         }).done(function(res) {
             console.log(res);
@@ -132,12 +131,12 @@ function loginToAdmin() {
 
 //exits data upload and navigates to search page
 function exitDataUpload() {
-    $.GET({
-        url: "upload.php",
-        data: {exitUpload: true}
-    }).done(function(res) {
-        console.log(res);
-    }).fail(function(error) {
-        console.log(error);
-    });
+    // $.get({
+    //     url: "upload.php",
+    //     data: { exitUpload: true }
+    // }).done(function(res) {
+    //     console.log(res);
+    // }).fail(function(error) {
+    //     console.log(error);
+    // });
 }
