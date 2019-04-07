@@ -1,6 +1,9 @@
 .city {
     font: 2em bold;
     line-height: 2em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+    display: none;
 }
 
 .opisanie {
@@ -46,4 +49,10 @@ ul {
 
 .exit {
     float: right;
+}
+
+img {
+    float: left;
+    width: 200px;
+    padding: 0 10px;
 }

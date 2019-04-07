@@ -2,7 +2,7 @@ $(document).ready(function() {
     showPrompt();
     submitData();
     uploadInfoToDatabase();
-    loginToAdmin();
+    login();
     exitDataUpload();
 });
 
@@ -12,7 +12,7 @@ function submitData() {
         let searchText = $("#search-text").val();
         let opisanie = $("#opisanie");
         let city = $("#city");
-
+        let img = $(".image");
         e.preventDefault();
         $.ajax({
             url: "info.php",
@@ -23,11 +23,16 @@ function submitData() {
             success: function(res, textStatus) {
                 opisanie.text(res.opisanie);
                 city.text(res.name);
+                city.show();
+                img.html("<img src='" + res.img + "' title='" + res.name + "' />");
+
             },
             error: function() {
                 let err = "No data found";
                 opisanie.text("");
-                city.text(err);
+                img.html("");
+                city.hide();
+                opisanie.text(err);
             }
 
 
@@ -49,7 +54,8 @@ function showPrompt() {
             prompt.css("display", "none");
             return;
         } else {
-            prompt.css("display", "block");
+
+            prompt.html("");
             $.ajax({
                 url: "search.php",
                 type: "GET",
@@ -63,9 +69,11 @@ function showPrompt() {
                     });
                     txt += "</ul>";
                     prompt.html(txt);
+                    prompt.css("display", "block");
+
                 },
                 error: function(er) {
-                    console.log(er);
+                    console.log(er.responseText);
                 }
 
 
@@ -91,13 +99,18 @@ function uploadInfoToDatabase() {
     $("#upload").on("click", function(e) {
 
         let dataString = $("form").serialize();
+        dataString += "&image=" + $('input[type=file]')[0].files[0];
+
+
 
         $.ajax({
-            url: "upload-service.php",
+            url: "upload_service.php",
             type: "POST",
-            data: dataString,
+            data: new FormData($("form")[0]),
+            processData: false,
+            contentType: false,
             success: function(res) {
-                console.log(res);
+
                 cityName.val("");
                 description.val("");
             },
@@ -115,28 +128,39 @@ function uploadInfoToDatabase() {
 
 }
 
-function loginToAdmin() {
-    $("#login-btn").on('submit', function() {
+function login() {
+    var msg = $('#error-msg');
+    //msg.hide();
+    $("#login-btn").on('click', function(e) {
         $.get({
-            url: "upload-service.php",
-            data: $("form").serialize()
+            url: "login_service.php",
+            data: $(".login-form").serialize(),
+            contentType: "text/html;charset=utf-8"
         }).done(function(res) {
-            console.log(res);
+
+            if (res !== "success") {
+                msg.show();
+                msg.html("Невалидно име и/или парола!");
+            } else {
+                msg.hide();
+                window.location.href = "upload.php";
+            }
         }).fail(function(error) {
             console.log(error);
         });
+        e.preventDefault();
     });
 }
 
 
 //exits data upload and navigates to search page
 function exitDataUpload() {
-    // $.get({
-    //     url: "upload.php",
-    //     data: { exitUpload: true }
-    // }).done(function(res) {
-    //     console.log(res);
-    // }).fail(function(error) {
-    //     console.log(error);
-    // });
+    $.get({
+        url: "upload.php",
+        data: { exitUpload: true }
+    }).done(function(res) {
+
+    }).fail(function(error) {
+        console.log(error);
+    });
 }

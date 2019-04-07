@@ -1,6 +1,6 @@
 <?php
 require_once('config.php');
-$sql = "SELECT  cityName, opisanie FROM info WHERE cityName = '".$_GET['search']. "'";
+$sql = "SELECT  cityName, opisanie, picture FROM info WHERE cityName = '".$_GET['search']. "'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -9,6 +9,7 @@ if ($result->num_rows > 0) {
    
 $res->opisanie = $row['opisanie'];
 $res->name = $row['cityName'];
+$res->img = $row['picture'];
 echo json_encode($res);
 
 

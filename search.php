@@ -10,7 +10,7 @@ if ($result->num_rows > 0) {
         array_push($res, $row['cityName']);
     }
 
-//echo $sql;  
+  
 echo json_encode($res);
 
 

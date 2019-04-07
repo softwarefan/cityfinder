@@ -27,7 +27,7 @@
                 </div>
                
                 <button type="submit" class="btn btn-primary" id="submitBtn">Търси</button>
-                <a class="data-upload" href="login.php">Въвеждане на данни</а>
+                <a class="data-upload" href="login.php"> Въвеждане на данни</a>
               </form>
 
           </div>
@@ -35,6 +35,7 @@
        <div id="data">
 
         <div id="city" class="city"> </div>
+        <div id="image" class="image"> </div>
         <div id="opisanie" class="opisanie"></div>
        </div>
        
